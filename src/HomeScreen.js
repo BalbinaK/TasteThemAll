@@ -8,6 +8,8 @@ import {
   Image,
 } from 'react-native';
 
+import Logo from './Logo';
+
 export default class HomeScreen extends Component {
   render() {
     const {navigate} = this.props.navigation;
@@ -18,12 +20,7 @@ export default class HomeScreen extends Component {
             <TouchableOpacity
               style={{alignItems: 'center'}}
               onPress={() => navigate('Profile', {name: 'Jane'})}>
-              <View style={styles.image}>
-                <Image
-                  source={require('../assets/intro_beer_icon.png')}
-                  style={{height: 100, width: 100}}
-                />
-              </View>
+              <Logo />
               <Text style={styles.title}>Taste Them All</Text>
             </TouchableOpacity>
           </View>

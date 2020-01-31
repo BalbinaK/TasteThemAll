@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, View, Text} from 'react-native';
-import {FlatList} from 'react-native-gesture-handler';
+import {SafeAreaView, StyleSheet, View, Text, FlatList} from 'react-native';
+
+import Logo from './Logo.js';
+
 import beers from '../data/beers.json';
 
 export default class Dashboard extends Component {
@@ -20,6 +22,10 @@ export default class Dashboard extends Component {
     Promise.resolve(beers).then(data => this.setState({beers: data}));
   };
 
+  renderHeader = () => {
+    return <Logo style={styles.logo} />;
+  };
+
   renderItem = ({item}) => {
     return (
       <View style={styles.listContainer}>
@@ -37,6 +43,7 @@ export default class Dashboard extends Component {
               data={this.state.beers}
               renderItem={this.renderItem}
               keyExtractor={(item, index) => index.toString()}
+              ListHeaderComponent={this.renderHeader}
             />
           </View>
         </View>
@@ -63,5 +70,9 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     color: 'yellow',
+  },
+  logo: {
+    alignSelf: 'center',
+    marginTop: 30,
   },
 });
