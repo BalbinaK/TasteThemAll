@@ -9,6 +9,8 @@ import {
 
 import Logo from './Logo';
 
+import {colors} from '../resources/colors';
+
 export default class HomeScreen extends Component {
   render() {
     const {navigate} = this.props.navigation;
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
   scrollView: {height: '100%'},
   main: {
     height: '100%',
-    backgroundColor: '#EDEFE3',
+    backgroundColor: colors.primaryBackground,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

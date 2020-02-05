@@ -7,7 +7,7 @@ export default class Logo extends Component {
     return (
       <View style={[style, {marginBottom: 20}]}>
         <Image
-          source={require('../assets/intro_beer_icon.png')}
+          source={require('../../assets/intro_beer_icon.png')}
           style={{height: 100, width: 100}}
         />
       </View>

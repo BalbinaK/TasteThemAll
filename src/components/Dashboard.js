@@ -10,7 +10,8 @@ import {
 
 import Logo from './Logo.js';
 
-import beers from '../data/beers.json';
+import beers from '../../data/beers.json';
+import {colors} from '../resources/colors.js';
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -46,7 +47,9 @@ export default class Dashboard extends Component {
   };
 
   renderItem = ({item}) => {
-    const backgroundColor = item.isSelected ? '#B2EAB2' : '#DBD1BA';
+    const backgroundColor = item.isSelected
+      ? colors.listItemSelected
+      : colors.listItemUnselected;
 
     return (
       <TouchableOpacity
@@ -83,18 +86,16 @@ const styles = StyleSheet.create({
   scrollView: {height: '100%'},
   main: {
     height: '100%',
-    backgroundColor: '#EDEFE3',
+    backgroundColor: colors.primaryBackground,
     flex: 1,
   },
   listContainer: {
-    backgroundColor: '#DBD1BA',
     padding: 15,
     marginBottom: 10,
     marginVertical: 5,
     marginHorizontal: 10,
     borderWidth: 1,
     borderRadius: 10,
-    borderColor: '#DBD1BA',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -106,7 +107,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    color: '#29335C',
+    color: colors.primaryText,
   },
   logo: {
     alignSelf: 'center',
