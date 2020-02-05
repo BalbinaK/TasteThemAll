@@ -5,7 +5,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Image,
 } from 'react-native';
 
 import Logo from './Logo';
@@ -19,7 +18,7 @@ export default class HomeScreen extends Component {
           <View style={styles.main}>
             <TouchableOpacity
               style={{alignItems: 'center'}}
-              onPress={() => navigate('Profile', {name: 'Jane'})}>
+              onPress={() => navigate('Dashboard')}>
               <Logo />
               <Text style={styles.title}>Taste Them All</Text>
             </TouchableOpacity>
@@ -34,7 +33,7 @@ const styles = StyleSheet.create({
   scrollView: {height: '100%'},
   main: {
     height: '100%',
-    backgroundColor: '#ddd',
+    backgroundColor: '#EDEFE3',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

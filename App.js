@@ -7,7 +7,7 @@ import Dashboard from './src/Dashboard';
 const MainNavigator = createStackNavigator(
   {
     Home: {screen: HomeScreen},
-    Profile: {screen: Dashboard},
+    Dashboard: {screen: Dashboard},
   },
   {
     headerMode: 'none',

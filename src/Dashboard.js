@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {SafeAreaView, StyleSheet, View, Text, FlatList} from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
 
 import Logo from './Logo.js';
 
@@ -10,27 +17,46 @@ export default class Dashboard extends Component {
     super(props);
 
     this.state = {
-      beers: [],
+      data: [],
     };
   }
 
   componentDidMount() {
-    this.getBeers();
+    this.getData();
   }
 
-  getBeers = () => {
-    Promise.resolve(beers).then(data => this.setState({beers: data}));
+  getData = () => {
+    Promise.resolve(beers).then(data => this.setState({data}));
   };
 
   renderHeader = () => {
     return <Logo style={styles.logo} />;
   };
 
+  onItemPressed = pressedItem => {
+    pressedItem.isSelected = !pressedItem.isSelected;
+
+    const updatedData = this.state.data;
+    const index = updatedData.findIndex(item => item.id === pressedItem.id);
+    updatedData[index] = pressedItem;
+
+    this.setState({
+      data: updatedData,
+    });
+  };
+
   renderItem = ({item}) => {
+    const backgroundColor = item.isSelected ? '#B2EAB2' : '#DBD1BA';
+
     return (
-      <View style={styles.listContainer}>
+      <TouchableOpacity
+        onPress={() => this.onItemPressed(item)}
+        style={[
+          styles.listContainer,
+          {backgroundColor, borderColor: backgroundColor},
+        ]}>
         <Text style={styles.title}>{item.name}</Text>
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -40,10 +66,11 @@ export default class Dashboard extends Component {
         <View style={styles.scrollView}>
           <View style={styles.main}>
             <FlatList
-              data={this.state.beers}
+              data={this.state.data}
               renderItem={this.renderItem}
-              keyExtractor={(item, index) => index.toString()}
+              keyExtractor={item => item.id.toString()}
               ListHeaderComponent={this.renderHeader}
+              extraData={this.state}
             />
           </View>
         </View>
@@ -56,20 +83,30 @@ const styles = StyleSheet.create({
   scrollView: {height: '100%'},
   main: {
     height: '100%',
-    backgroundColor: '#ddd',
+    backgroundColor: '#EDEFE3',
     flex: 1,
   },
   listContainer: {
-    backgroundColor: '#555',
+    backgroundColor: '#DBD1BA',
     padding: 15,
+    marginBottom: 10,
     marginVertical: 5,
     marginHorizontal: 10,
     borderWidth: 1,
-    borderColor: '#eee',
+    borderRadius: 10,
+    borderColor: '#DBD1BA',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    elevation: 3,
   },
   title: {
     fontSize: 20,
-    color: 'yellow',
+    color: '#29335C',
   },
   logo: {
     alignSelf: 'center',
