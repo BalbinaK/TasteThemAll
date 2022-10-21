@@ -57,7 +57,8 @@ export default class Dashboard extends Component {
         style={[
           styles.listContainer,
           {backgroundColor, borderColor: backgroundColor},
-        ]}>
+        ]}
+      >
         <Text style={styles.title}>{item.name}</Text>
       </TouchableOpacity>
     );

@@ -13,14 +13,15 @@ import {colors} from '../resources/colors';
 
 export default class HomeScreen extends Component {
   render() {
-    const {navigate} = this.props.navigation;
+    const {navigation} = this.props;
     return (
       <SafeAreaView>
         <View style={styles.scrollView}>
           <View style={styles.main}>
             <TouchableOpacity
               style={{alignItems: 'center'}}
-              onPress={() => navigate('Dashboard')}>
+              onPress={() => navigation.navigate('Dashboard')}
+            >
               <Logo />
               <Text style={styles.title}>Taste Them All</Text>
             </TouchableOpacity>
